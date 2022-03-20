@@ -16,7 +16,13 @@ typedef float madflow;
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "madflow2d.h"
+#include "Vector2d.h"
 
+inline float InSec()
+{
+	float time = SDL_GetTicks();
+	time /= 1000.0f;
+	return time; //in seconds
+}
 
 #endif

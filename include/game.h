@@ -2,25 +2,29 @@
 #define GAME_H
 
 #include "common.h"
+#include "InputHandler.h"
+#include "GameObjects.h"
 
 class game
 {
-	static game* gameinst;
 	bool state;
-
+	static game* gameinst;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	
+
 public:
-	SDL_Renderer* getRenderer();
 	
 	static game* getInstance();
-	bool isRunnning();
-	void setState(bool state);
-
 	int getRefreshRate();
-	bool Init(const char* title);
+
+	bool isRunnning() { return state; }
+	void setState(bool state) { this->state = state; }
+	SDL_Renderer* getRenderer() { return this->renderer; }
+
 	void HandleEvents();
+
+	bool Init(const char* title);
+	
 	void Update(float dt);
 	void Render();
 	void clean();
