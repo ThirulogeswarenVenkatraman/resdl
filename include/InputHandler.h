@@ -1,7 +1,9 @@
 #ifndef INPUT_HANDLER_H
 #define INPUT_HANDLER_H
 
-#include "common.h"
+#include <SDL2/SDL.h>
+
+#include <vector>
 
 enum mouseButtons {
 	LEFT = 0,

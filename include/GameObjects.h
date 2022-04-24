@@ -3,13 +3,16 @@
 
 #include "game.h"
 #include "TextureManager.h"
+#include "Vector2d.h"
 
 class GameObjects { 
 public:
-    virtual bool Load() = 0;
+    virtual void Load() = 0;
     virtual void Update(float dt) = 0;
     virtual void Render() = 0;
     virtual void clean() = 0;
+    virtual madflow retX() = 0;
+    virtual madflow retY() = 0;
 };
 
 #endif

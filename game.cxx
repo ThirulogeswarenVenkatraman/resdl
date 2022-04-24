@@ -1,7 +1,5 @@
 #include "include/game.h"
 
-GameObjects *myship;
-
 game* game::gameinst = 0;
 
 game* game::getInstance()
@@ -30,12 +28,12 @@ void game::HandleEvents() {
 	}
 }
 
-bool game::Init(const char* title)
+bool game::Init(int width, int height, const char* title)
 {
 	if (SDL_INIT_EVERYTHING)
 	{
 		window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+			SDL_WINDOWPOS_CENTERED, width, height, 0);
 		state = true;
 	}
 	else { std::cerr << SDL_GetError(); state = false;
@@ -55,14 +53,13 @@ bool game::Init(const char* title)
 
 void game::Update(float dt)
 {
-
+	
 }
 
 void game::Render()
 {
 	SDL_RenderClear(renderer);
 	// Render Here
-
 	SDL_RenderPresent(renderer);
 }
 

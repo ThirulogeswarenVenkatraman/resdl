@@ -1,15 +1,19 @@
 #ifndef VECTOR_2D_H
 #define VECTOR_2D_H
 
-#include "common.h"
+#include "madflow.h"
 
 class Vector2 {
+
 public:
 	madflow x;
 	madflow y;
-
+	
 	Vector2() : x(0.0f), y(0.0f) { }
 	Vector2(madflow xx,madflow yy) : x(xx),y(yy) { }
+
+	Vector2* setxval(madflow xx) { this->x = xx; return this; }
+	Vector2* setyval(madflow yy) { this->y = yy; return this; }
 
 	void Invert();
 	madflow magnitude() const;

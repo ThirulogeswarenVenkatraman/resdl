@@ -1,9 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "common.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
 #include "InputHandler.h"
 #include "GameObjects.h"
+
+class GameObjects;
 
 class game
 {
@@ -11,9 +15,8 @@ class game
 	static game* gameinst;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-
+	std::vector<GameObjects*> gObjs;
 public:
-	
 	static game* getInstance();
 	int getRefreshRate();
 
@@ -23,7 +26,7 @@ public:
 
 	void HandleEvents();
 
-	bool Init(const char* title);
+	bool Init(int width, int height, const char* title);
 	
 	void Update(float dt);
 	void Render();
