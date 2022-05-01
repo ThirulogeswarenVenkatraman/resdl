@@ -7,6 +7,11 @@ typedef float madflow;
 #define madflow_pow powf
 #define MADFLOW_MAX FLT_MAX
 
+#define SCREEN_X 1280
+#define SCREEN_Y 720
+
+#define tSCALE 1
+
 inline float InSec()
 {
 	float time = SDL_GetTicks();

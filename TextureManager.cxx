@@ -46,14 +46,15 @@ void TextureManager::Draw(std::string id, int x, int y, int width, int height, S
     DestRect.x = x;
     DestRect.y= y;
 
-    SrcRect.w = DestRect.w = width;
-    SrcRect.h = DestRect.h = height;
+    SrcRect.w = width; SrcRect.h = height;
+
+    DestRect.w = width * tSCALE; DestRect.h = height * tSCALE;
 
     SDL_RenderCopyEx(renderer, qtextures[id], &SrcRect, &DestRect, 0, 0, flip);
 }
 
 void TextureManager::DrawFrame(std::string id, int x, int y, int width, int height, int currentRow, 
-    int currentFrame, SDL_Renderer* renderer, int FlipValue)
+    int currentFrame, SDL_Renderer* renderer, SDL_RendererFlip flip)
 {
     SDL_Rect SrcRect;
     SDL_Rect DestRect;
@@ -63,19 +64,8 @@ void TextureManager::DrawFrame(std::string id, int x, int y, int width, int heig
     DestRect.x = x;
     DestRect.y = y;
 
-    SrcRect.w = DestRect.w = width;
-    SrcRect.h = DestRect.h = height;
-    if (FlipValue == 1)
-    {
-        SDL_RenderCopyEx(renderer, qtextures[id], &SrcRect, &DestRect, 0, 0,SDL_FLIP_HORIZONTAL);
-    }
-    else if(FlipValue==2)
-    { 
-        SDL_RenderCopyEx(renderer, qtextures[id], &SrcRect, &DestRect, 0, 0, SDL_FLIP_VERTICAL);
-    }
-    else
-    {
-        SDL_RenderCopyEx(renderer, qtextures[id], &SrcRect, &DestRect, 0, 0,SDL_FLIP_NONE);
-    }
+    SrcRect.w = width; SrcRect.h = height;
+    DestRect.w = width * tSCALE; DestRect.h = height * tSCALE;
     
+    SDL_RenderCopyEx(renderer, qtextures[id], &SrcRect, &DestRect, 0, 0, flip);
 }

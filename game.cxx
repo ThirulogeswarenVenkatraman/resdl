@@ -47,24 +47,28 @@ bool game::Init(int width, int height, const char* title)
 	}
 	else {std::cerr << SDL_GetError(); state = false;
 	return false; }
-	
+
+	// Load Images
+
 	return true;
 }
 
 void game::Update(float dt)
 {
-	
+
 }
 
 void game::Render()
 {
 	SDL_RenderClear(renderer);
 	// Render Here
+	
 	SDL_RenderPresent(renderer);
 }
 
 void game::clean()
 {
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

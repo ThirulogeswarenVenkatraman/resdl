@@ -1,1 +1,1 @@
-g++ ./*.cxx -o zzz -lm -lSDL2 -lSDL2_image 
+g++ ./*.cxx -o foo -lm -lSDL2 -lSDL2_image 

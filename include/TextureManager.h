@@ -7,6 +7,8 @@
 #include <map>
 #include <string>
 
+#include "madflow.h"
+
 class TextureManager
 {
 	static TextureManager* textinst;
@@ -21,7 +23,7 @@ public:
 	void Draw(std::string id, int x, int y, int width, int height,
 	SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE);
 	void DrawFrame(std::string id, int x, int y, int width, int height, int currentRow,
-	int currentFrame, SDL_Renderer* renderer, int FlipValue);
+	int currentFrame, SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE);
 };
 
 #endif
