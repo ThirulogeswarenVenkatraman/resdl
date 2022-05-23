@@ -1,6 +1,8 @@
 #include "include/game.h"
+#include "include/level.h"
 
-game* game::gameinst = 0;
+Level* lvl = nullptr;
+game* game::gameinst = nullptr;
 
 game* game::getInstance()
 {
@@ -49,7 +51,7 @@ bool game::Init(int width, int height, const char* title)
 	return false; }
 
 	// Load Images
-
+	
 	return true;
 }
 
@@ -68,7 +70,7 @@ void game::Render()
 
 void game::clean()
 {
-
+	
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
