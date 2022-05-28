@@ -10,7 +10,7 @@ typedef float madflow;
 #define SCREEN_X 1280
 #define SCREEN_Y 720
 
-#define tSCALE 1
+#define tSCALE 2
 
 inline float InSec()
 {

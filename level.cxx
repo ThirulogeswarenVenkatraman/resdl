@@ -32,7 +32,15 @@ void Level::loadMap(std::string filename) {
             tileset->FirstChildElement("image")->QueryIntAttribute("height", &tilesetheight);
 
             TextureManager::getInstance()->LoadTileSet(imgsrc, srcname, game::getInstance()->getRenderer());
-            
+            int GID;
+            tileset->QueryIntAttribute("firstgid", &GID);
+            for( int i = 0; i < (tilesetheight/tileheight); i++) { 
+                for ( int j = 0; j < (tilesetwidth/tilewidth); j++) {
+                    m_tiles[GID] = (tile){ srcname, j, i};
+                    GID++;
+                }
+            }
+            // points to the next tileset if any
             tileset = tileset->NextSiblingElement("tileset");
         }
     }
@@ -62,13 +70,7 @@ void Level::loadMap(std::string filename) {
             layer = layer->NextSiblingElement("layer");
         }
     }
-    int GID = 1;
-    for( int i = 0; i < (tilesetheight/tileheight); i++) { // 4
-        for ( int j = 0; j < (tilesetwidth/tilewidth); j++) { // 16
-            m_tiles[GID] = (tile){j, i};
-            GID++;
-        }
-    }
+    
 }
 
 void Level::drawLevel() {
@@ -77,8 +79,8 @@ void Level::drawLevel() {
         for( int j = 0; j < columns; j++) {
             int ID = gid.at(inx);
             if(ID) {
-                TextureManager::getInstance()->DrawTile(srcname, j, i, tilewidth, tileheight, 
-                m_tiles.at(ID).x_off, m_tiles.at(ID).y_off, game::getInstance()->getRenderer());
+                TextureManager::getInstance()->DrawTile(m_tiles.at(ID).srcname, j, i, tilewidth, tileheight, 
+                m_tiles.at(ID).x_offset, m_tiles.at(ID).y_offset, game::getInstance()->getRenderer());
             }inx++;
         }
     }

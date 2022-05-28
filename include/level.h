@@ -7,6 +7,7 @@
 #include <map>
 
 typedef struct {
+    std::string srcname;
 	int x_offset;
 	int y_offset;
 } tile;

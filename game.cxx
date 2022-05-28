@@ -51,6 +51,7 @@ bool game::Init(int width, int height, const char* title)
 	return false; }
 
 	// Load Images
+	lvl = new Level("assets/MapOne.tmx");
 	
 	return true;
 }
@@ -64,7 +65,7 @@ void game::Render()
 {
 	SDL_RenderClear(renderer);
 	// Render Here
-	
+	lvl->drawLevel();
 	SDL_RenderPresent(renderer);
 }
 
