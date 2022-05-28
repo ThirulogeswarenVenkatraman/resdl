@@ -14,6 +14,7 @@ typedef struct {
 
 class Level {
     std::string srcname;
+    std::vector<std::string> srcnames;
     std::vector<int> gid;
     std::map<int, tile> m_tiles;
 
@@ -21,6 +22,7 @@ class Level {
     int rows;
     int tilewidth; int tileheight;
     int tilesetwidth; int tilesetheight;
+    int layers;
 
     void loadMap(std::string filename);
 public:

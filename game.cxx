@@ -71,7 +71,7 @@ void game::Render()
 
 void game::clean()
 {
-	
+	lvl->freeLevel();
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

@@ -59,6 +59,7 @@ void TextureManager::clean(std::string textureName)
 void TextureManager::freeTileSet(std::string tilesetname)
 {
     SDL_DestroyTexture(qtilesets[tilesetname]);
+    std::cout << "\nfreed -> " << tilesetname;
 }
 
 void TextureManager::Draw(std::string id, int x, int y, int width, int height, SDL_Renderer* renderer, SDL_RendererFlip flip)

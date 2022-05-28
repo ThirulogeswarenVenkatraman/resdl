@@ -27,6 +27,7 @@ void Level::loadMap(std::string filename) {
     if(tileset != NULL) {
         while(tileset) {
             srcname = (std::string)tileset->Attribute("name");
+            srcnames.push_back(srcname);
             std::string imgsrc = "assets/" + (std::string)tileset->FirstChildElement("image")->Attribute("source");
             tileset->FirstChildElement("image")->QueryIntAttribute("width", &tilesetwidth);
             tileset->FirstChildElement("image")->QueryIntAttribute("height", &tilesetheight);
@@ -46,9 +47,10 @@ void Level::loadMap(std::string filename) {
     }
     
     // getting Layer 
-    XMLElement* layer = mapNode->FirstChildElement("layer");
+    XMLElement* layer = mapNode->FirstChildElement("layer"); layers = 0;
     if(layer != NULL) {
         while(layer) {
+            layers++;
             XMLElement* data = layer->FirstChildElement("data");
             if(data != NULL) {
                 while(data) {
@@ -70,22 +72,25 @@ void Level::loadMap(std::string filename) {
             layer = layer->NextSiblingElement("layer");
         }
     }
-    
 }
 
 void Level::drawLevel() {
     int inx = 0;
-    for ( int i = 0; i < rows; i++) {
-        for( int j = 0; j < columns; j++) {
-            int ID = gid.at(inx);
-            if(ID) {
-                TextureManager::getInstance()->DrawTile(m_tiles.at(ID).srcname, j, i, tilewidth, tileheight, 
-                m_tiles.at(ID).x_offset, m_tiles.at(ID).y_offset, game::getInstance()->getRenderer());
-            }inx++;
-        }
+    for (int l = 0; l < this->layers; l++) {
+        for ( int i = 0; i < rows; i++) {
+            for( int j = 0; j < columns; j++) {
+                int ID = gid.at(inx);
+                if(ID) {
+                    TextureManager::getInstance()->DrawTile(m_tiles.at(ID).srcname, j, i, tilewidth, tileheight, 
+                    m_tiles.at(ID).x_offset, m_tiles.at(ID).y_offset, game::getInstance()->getRenderer());
+                }inx++;
+            }
+        } 
     }
 }
 
 void Level::freeLevel() {
-    TextureManager::getInstance()->freeTileSet(srcname);
+    for( auto str : srcnames) {
+        TextureManager::getInstance()->freeTileSet(str);
+    }
 }
