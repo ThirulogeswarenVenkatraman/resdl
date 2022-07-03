@@ -7,10 +7,10 @@ typedef float madflow;
 #define madflow_pow powf
 #define MADFLOW_MAX FLT_MAX
 
-#define SCREEN_X 1280
-#define SCREEN_Y 720
+#define SCREEN_X 1024
+#define SCREEN_Y 576
 
-#define tSCALE 2.5
+#define tSCALE 1
 
 inline float InSec()
 {
